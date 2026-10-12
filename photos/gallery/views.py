@@ -39,4 +39,14 @@ def login(request):
          {"error" : "invalid username or password."}
       )   
    return render(request, login.html)
+
+def logout(request):
+   if request.method == "POST":
+      logout(request)
+      return render("gallery_home")
+
+@login_required
+def gallery_home(request):
+   return render (request , "gallery/gallery_home.html")   
+   
     
