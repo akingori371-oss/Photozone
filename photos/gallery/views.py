@@ -1,4 +1,9 @@
 from django.shortcuts import render
 
-def gallery(request):
+
+def home(request):
     return render(request, "gallery/home.html")
+
+
+def login(request):
+    return render(request, "gallery/login.html")

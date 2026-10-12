@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photozone | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
+
+    <div class="w-full max-w-md bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl">
+
+        <h1 class="text-3xl font-bold text-indigo-400 text-center mb-2">
+            Photozone
+        </h1>
+
+        <h2 class="text-2xl font-semibold text-center mt-6">
+            Welcome Back
+        </h2>
+
+        <p class="text-gray-400 text-center mt-2 mb-8">
+            Sign in to your account
+        </p>
+
+        <form action="#" method="POST" class="space-y-5">
+
+            {% csrf_token %}
+
+            <div>
+                <label for="email" class="block text-sm mb-2">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm mb-2">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                    class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 rounded-lg py-3 font-semibold transition"
+            >
+                Sign In
+            </button>
+
+        </form>
+
+        <p class="text-gray-400 text-center mt-6">
+            Don't have an account?
+            <a href="#" class="text-indigo-400 hover:text-indigo-300">
+                Sign Up
+            </a>
+        </p>
+
+        <p class="text-gray-600 text-xs text-center mt-8">
+            &copy; 2026 Photozone. All rights reserved.
+        </p>
+
+    </div>
+
+</body>
+</html>
+
