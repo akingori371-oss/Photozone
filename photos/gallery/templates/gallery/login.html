@@ -4,57 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photozone | Login</title>
+    <title>Login | Photozone</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
 
-    <div class="w-full max-w-md bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl">
+    <div class="w-full max-w-md bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-xl">
 
-        <h1 class="text-3xl font-bold text-indigo-400 text-center mb-2">
+        <a href="{% url 'home' %}" class="block text-3xl font-bold text-indigo-400 text-center">
             Photozone
-        </h1>
+        </a>
 
-        <h2 class="text-2xl font-semibold text-center mt-6">
-            Welcome Back
-        </h2>
-
+        <h1 class="text-2xl font-bold text-center mt-8">Welcome Back</h1>
         <p class="text-gray-400 text-center mt-2 mb-8">
-            Sign in to your account
+            Log in to explore the gallery.
         </p>
 
-        <form action="#" method="POST" class="space-y-5">
+        {% if error %}
+            <p class="bg-red-900/40 text-red-300 p-3 rounded-lg mb-5">
+                {{ error }}
+            </p>
+        {% endif %}
 
+        <form method="POST" action="{% url 'login' %}" class="space-y-5">
             {% csrf_token %}
 
             <div>
-                <label for="email" class="block text-sm mb-2">
-                    Email Address
-                </label>
-
+                <label for="username" class="block text-sm mb-2">Username</label>
                 <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="you@example.com"
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
                     required
                     class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="Enter your username"
                 >
             </div>
 
             <div>
-                <label for="password" class="block text-sm mb-2">
-                    Password
-                </label>
-
+                <label for="password" class="block text-sm mb-2">Password</label>
                 <input
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="Enter your password"
+                    autocomplete="current-password"
                     required
                     class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="Enter your password"
                 >
             </div>
 
@@ -62,24 +60,22 @@
                 type="submit"
                 class="w-full bg-indigo-600 hover:bg-indigo-500 rounded-lg py-3 font-semibold transition"
             >
-                Sign In
+                Log In
             </button>
-
         </form>
 
         <p class="text-gray-400 text-center mt-6">
             Don't have an account?
-            <a href="#" class="text-indigo-400 hover:text-indigo-300">
-                Sign Up
+            <a href="{% url 'register' %}" class="text-indigo-400 hover:text-indigo-300">
+                Create one
             </a>
         </p>
 
-        <p class="text-gray-600 text-xs text-center mt-8">
-            &copy; 2026 Photozone. All rights reserved.
-        </p>
+        <a href="{% url 'home' %}" class="block text-center text-gray-500 hover:text-white mt-6 text-sm">
+            Back to Home
+        </a>
 
     </div>
-
 </body>
 </html>
 

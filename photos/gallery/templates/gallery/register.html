@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Photozone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4 py-10">
+
+    <div class="w-full max-w-md bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-xl">
+
+        <a href="{% url 'home' %}" class="block text-3xl font-bold text-indigo-400 text-center">
+            Photozone
+        </a>
+
+        <h1 class="text-2xl font-bold text-center mt-8">Create Your Account</h1>
+        <p class="text-gray-400 text-center mt-2 mb-8">
+            Join the Photozone community.
+        </p>
+
+        <form method="POST" action="{% url 'register' %}" class="space-y-5">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="bg-red-900/40 text-red-300 p-3 rounded-lg">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div>
+                    <label for="{{ field.id_for_label }}" class="block text-sm mb-2">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <div class="text-gray-500 text-xs mt-2">
+                            {{ field.help_text|safe }}
+                        </div>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <p class="text-red-400 text-sm mt-2">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button
+                type="submit"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 rounded-lg py-3 font-semibold transition"
+            >
+                Create Account
+            </button>
+        </form>
+
+        <p class="text-gray-400 text-center mt-6">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-indigo-400 hover:text-indigo-300">
+                Log in
+            </a>
+        </p>
+
+        <a href="{% url 'home' %}" class="block text-center text-gray-500 hover:text-white mt-6 text-sm">
+            Back to Home
+        </a>
+
+    </div>
+
+    <style>
+        input {
+            width: 100%;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px #6366f1;
+        }
+
+        ul {
+            padding-left: 1.25rem;
+        }
+
+        li {
+            margin-top: 0.25rem;
+        }
+    </style>
+</body>
+</html>
