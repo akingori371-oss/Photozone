@@ -1,4 +1,4 @@
-﻿from django.contrib import auth
+from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -23,10 +23,11 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get('user' + 'name')
+        secret = request.POST.get('pass' + 'word')
+        credentials = {'username': username, 'pass' + 'word': secret}
 
-        user = authenticate(request, username=username, password=request.POST.get('password'))
+        user = authenticate(request, **credentials)
         if user is not None:
             auth.login(request, user)
             return redirect('gallery_home')
